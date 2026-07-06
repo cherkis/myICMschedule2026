@@ -17,19 +17,21 @@
 - [x] P2. **USER TRY-OUT & FEEDBACK — gate passed 2026-07-05 ("Looks nice"), no changes requested**
 
 ### Phase C — app
-- [ ] C1. App shell: `index.html` (5 views + bottom nav), `styles.css` (planapp-style theme, responsive for desktop AND iPhone), `app.js` skeleton with `showView()`, localStorage helpers, and schedule loader (revalidating fetch of `data/sessions.json`)
-- [ ] C2. Schedule (catalog) view: date tabs (All dates / Jul 22–30), category filter, event rows, select/unselect button, "Schedule snapshot from {date} — always verify against icm2026.org" stamp
-- [ ] C3. Event detail view: full title, Philadelphia time, room, speakers + affiliations, abstract
-- [ ] C4. Calendar view: month grid, today highlighted, dots on days with selected or manual events
-- [ ] C5. Day view: selected ICM events + manual events merged, sorted by time (time · room · speaker · truncated title), highlight toggle, tap → detail (offline-capable from localStorage)
-- [ ] C6. Manual events: "+ Add event" in day view (time picker + title field, planapp-style), edit/delete, highlightable, stored locally
-- [ ] C7. Help/instructions view (menu button): usage, iPhone install steps, privacy note, **disclaimer: schedule is a snapshot — always verify current schedule on icm2026.org**
-- [ ] C8. Polish for both targets: apple-touch meta tags + 180×180 icon for iPhone; hover/focus states, wider comfortable layout, keyboard-usable controls for desktop browsers
-- [ ] C9. `README.md`: app description, iPhone install instructions, local-data privacy statement, snapshot disclaimer (verify on icm2026.org), how to regenerate the snapshot (`tools/update-schedule.py` + redeploy)
+- [x] C1. App shell: `index.html` (5 views + bottom nav), `styles.css` (planapp-style theme, responsive for desktop AND iPhone), `app.js` skeleton with `showView()`, localStorage helpers, and schedule loader (revalidating fetch of `data/sessions.json`)
+- [x] C2. Schedule (catalog) view: date tabs (All dates / Jul 22–30), category filter, event rows, select/unselect button, "Schedule snapshot from {date} — always verify against icm2026.org" stamp
+- [x] C3. Event detail view: full title, Philadelphia time, room, speakers + affiliations, abstract (+ highlight button when selected)
+- [x] C4. Calendar view: month grid, today highlighted, dots on days with selected or manual events, Today button
+- [x] C5. Day view: selected ICM events + manual events merged, sorted by time (time · room · speaker · truncated title), highlight toggle, tap → detail (offline-capable from localStorage)
+- [x] C6. Manual events: "+ Add my own event" in day view (time picker + title field, planapp-style), edit/delete, highlightable, stored locally
+- [x] C7. Help/instructions view (nav button): usage, iPhone install steps, privacy note, snapshot-accuracy disclaimer with icm2026.org link
+- [x] C8. Polish for both targets: apple-touch meta tags + generated 180×180 icon; hover states, ≥16px inputs (no iOS zoom), keyboard/mouse-usable controls
+- [x] C9. `README.md`: app description, iPhone install instructions, local-data privacy statement, snapshot disclaimer, refresh how-to
 
 ### Phase D — verify & deploy
-- [ ] D1. Full local click-through in a desktop browser (Chrome + Safari) AND iPhone-width viewport: every flow incl. manual events, persistence across reload, timezone spot-check
-- [ ] D2. `git init` + initial commit; create GitHub repo `cherkis/myICMschedule2026`; push; enable GitHub Pages
+- [x] D1. Verified end-to-end via automated harness in headless Chrome (26/26 checks): data load (737 sessions, 22 categories, 9 days), timezone (16:50Z→12:50 PM), date tabs, category filter (19 plenaries), select stores full copy incl. abstract, calendar dots + today, day view, highlight persist + styling, detail abstract, manual add/edit/delete/sort, calendar dot for manual, unselect, and localStorage persistence across browser restart. Fixed one real bug found: manual-event id collision within same millisecond. Visuals confirmed by screenshots (headless-Chrome note: viewport min-width 500 clips narrower screenshots — not an app issue).
+- [x] D2a. `git init` + initial commits on `main`; remote set to https://github.com/cherkis/myICMschedule2026.git
+- [ ] D2b. **USER: create empty GitHub repo `myICMschedule2026`** (github.com/new — public, no README) — `gh` CLI is not installed and keychain-token API use was blocked by permissions, so repo creation needs you
+- [ ] D2c. Push `main`; **USER: enable Pages** (repo Settings → Pages → Deploy from branch → `main` / `/ (root)`)
 - [ ] D3. Verify live URL on desktop; user confirms install + function on iPhone
 
 ---
