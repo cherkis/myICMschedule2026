@@ -444,7 +444,7 @@ function saveManualForm(e) {
         man[state.editingManualId].time = time;
         man[state.editingManualId].title = title;
     } else {
-        const id = 'man_' + Date.now();
+        const id = 'man_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
         man[id] = { id, date: state.dayKey, time, title, highlighted: false, createdAt: new Date().toISOString() };
     }
     saveManual(man);
