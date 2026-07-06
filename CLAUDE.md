@@ -26,3 +26,27 @@
 - **CORS blocks these endpoints from browsers** (preflight 500, no ACAO on response) → schedule data is fetched by `tools/update-schedule.py` on the Mac and bundled as static `data/sessions.json`. Refreshing the schedule = re-run script + redeploy.
 - Live in-browser refresh was investigated and ruled out (2026-07-05): the guestside GraphQL `Event` type exposes no session-list field (all query texts in the app's JS chunks swept), and four public CORS proxies (corsproxy.io, allorigins, codetabs, cors.workers.dev) all failed to relay the 4.6 MB POST. Don't revisit without new evidence.
 - Abstracts may contain HTML fragments and TeX `$...$` — strip/neutralize HTML, preserve TeX as text.
+
+## Refreshing the schedule snapshot
+
+When the user asks to refresh/update the schedule (most useful in the weeks around the congress, July 2026):
+
+```sh
+cd /Users/cherkis/MyApps/myICMschedule2026
+python3 tools/update-schedule.py        # regenerates data/sessions.json, prints validation summary
+```
+
+1. Sanity-check the printed summary against the previous run (baseline 2026-07-05: 737 published sessions, peak ~138/day Jul 24–26). Small drifts are normal (talks added/cancelled); investigate anything drastic (e.g. count halves → endpoint or filter broke; do NOT push).
+2. Spot-check one or two changed/new titles against the live catalog page if the diff is large (`git diff --stat data/sessions.json` first; `python3 -c ...` to compare titles).
+3. Publish:
+   ```sh
+   git add data/sessions.json && git commit -m "Refresh schedule snapshot" && git push
+   ```
+   GitHub Pages redeploys automatically (~1 min). Verify:
+   ```sh
+   curl -s https://cherkis.github.io/myICMschedule2026/data/sessions.json | \
+     python3 -c "import json,sys; d=json.load(sys.stdin); print(d['updated'], len(d['sessions']), 'sessions')"
+   ```
+4. The app picks the new file up on next load (revalidating fetch) — users don't reinstall. The "Schedule snapshot from {date}" stamp in the app and Help page updates automatically from the `updated` field.
+
+If the script errors: the Cvent endpoints or snapshot format may have changed — re-derive from the facts above (start by checking the eventSnapshot POST with curl) before touching the app.
