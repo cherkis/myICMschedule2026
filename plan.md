@@ -30,8 +30,8 @@
 ### Phase D — verify & deploy
 - [x] D1. Verified end-to-end via automated harness in headless Chrome (26/26 checks): data load (737 sessions, 22 categories, 9 days), timezone (16:50Z→12:50 PM), date tabs, category filter (19 plenaries), select stores full copy incl. abstract, calendar dots + today, day view, highlight persist + styling, detail abstract, manual add/edit/delete/sort, calendar dot for manual, unselect, and localStorage persistence across browser restart. Fixed one real bug found: manual-event id collision within same millisecond. Visuals confirmed by screenshots (headless-Chrome note: viewport min-width 500 clips narrower screenshots — not an app issue).
 - [x] D2a. `git init` + initial commits on `main`; remote set to https://github.com/cherkis/myICMschedule2026.git
-- [ ] D2b. **USER: create empty GitHub repo `myICMschedule2026`** (github.com/new — public, no README) — `gh` CLI is not installed and keychain-token API use was blocked by permissions, so repo creation needs you
-- [ ] D2c. Push `main`; **USER: enable Pages** (repo Settings → Pages → Deploy from branch → `main` / `/ (root)`)
+- [x] D2b. USER created GitHub repo `myICMschedule2026`
+- [ ] D2c. `main` pushed ✓; **USER: enable Pages** (repo Settings → Pages → Deploy from branch → `main` / `/ (root)`)
 - [ ] D3. Verify live URL on desktop; user confirms install + function on iPhone
 
 ---
