@@ -33,7 +33,7 @@
 - [x] D2b. USER created GitHub repo `myICMschedule2026`
 - [x] D2c. `main` pushed; USER enabled Pages — live at https://cherkis.github.io/myICMschedule2026/
 - [x] D3a. Live URL verified: all assets 200, sessions.json gzipped to 330 KB on the wire, headless-Chrome render of the live site shows all 737 sessions + snapshot disclaimer
-- [ ] D3b. **USER: install on iPhone (Safari → Share → Add to Home Screen) and confirm**
+- [x] D3b. USER installed on iPhone and confirmed all working (2026-07-05) — **PROJECT COMPLETE** 🎉
 
 ---
 
