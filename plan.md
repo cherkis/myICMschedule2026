@@ -31,8 +31,9 @@
 - [x] D1. Verified end-to-end via automated harness in headless Chrome (26/26 checks): data load (737 sessions, 22 categories, 9 days), timezone (16:50Z→12:50 PM), date tabs, category filter (19 plenaries), select stores full copy incl. abstract, calendar dots + today, day view, highlight persist + styling, detail abstract, manual add/edit/delete/sort, calendar dot for manual, unselect, and localStorage persistence across browser restart. Fixed one real bug found: manual-event id collision within same millisecond. Visuals confirmed by screenshots (headless-Chrome note: viewport min-width 500 clips narrower screenshots — not an app issue).
 - [x] D2a. `git init` + initial commits on `main`; remote set to https://github.com/cherkis/myICMschedule2026.git
 - [x] D2b. USER created GitHub repo `myICMschedule2026`
-- [ ] D2c. `main` pushed ✓; **USER: enable Pages** (repo Settings → Pages → Deploy from branch → `main` / `/ (root)`)
-- [ ] D3. Verify live URL on desktop; user confirms install + function on iPhone
+- [x] D2c. `main` pushed; USER enabled Pages — live at https://cherkis.github.io/myICMschedule2026/
+- [x] D3a. Live URL verified: all assets 200, sessions.json gzipped to 330 KB on the wire, headless-Chrome render of the live site shows all 737 sessions + snapshot disclaimer
+- [ ] D3b. **USER: install on iPhone (Safari → Share → Add to Home Screen) and confirm**
 
 ---
 
