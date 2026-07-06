@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="myICM 2026">
+    <meta name="theme-color" content="#007AFF">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+    <title>myICM 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Schedule (catalog) view -->
+        <div id="schedule-view" class="view active">
+            <header class="view-header">
+                <h1>ICM 2026 Schedule</h1>
+            </header>
+            <div id="date-tabs" class="date-tabs"></div>
+            <div class="filter-bar">
+                <select id="category-filter" class="category-filter" aria-label="Filter by category">
+                    <option value="all">All categories</option>
+                </select>
+            </div>
+            <div id="schedule-list" class="schedule-list">
+                <p class="loading-note">Loading schedule…</p>
+            </div>
+            <p id="snapshot-note" class="snapshot-note"></p>
+        </div>
+
+        <!-- Event detail view -->
+        <div id="detail-view" class="view">
+            <header class="view-header">
+                <button id="detail-back" class="back-button">◀ Back</button>
+            </header>
+            <div id="detail-content" class="detail-content"></div>
+        </div>
+
+        <!-- Calendar view -->
+        <div id="calendar-view" class="view">
+            <header class="view-header">
+                <h1>My Calendar</h1>
+                <button id="cal-today" class="header-action">Today</button>
+            </header>
+            <div class="calendar-nav">
+                <button id="cal-prev" aria-label="Previous month">◀</button>
+                <h2 id="cal-title"></h2>
+                <button id="cal-next" aria-label="Next month">▶</button>
+            </div>
+            <div class="calendar-weekdays">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+                <span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div id="calendar-grid" class="calendar-grid"></div>
+            <p class="calendar-hint">Days with a dot have events. Tap a day to see them.</p>
+        </div>
+
+        <!-- Day view -->
+        <div id="day-view" class="view">
+            <header class="view-header">
+                <button id="day-back" class="back-button">◀ Calendar</button>
+                <h1 id="day-title"></h1>
+            </header>
+            <div id="day-list" class="day-list"></div>
+            <div class="day-actions">
+                <button id="add-manual" class="action-button primary">＋ Add my own event</button>
+            </div>
+            <form id="manual-form" class="manual-form" hidden>
+                <h3 id="manual-form-title">Add event</h3>
+                <label>Time
+                    <input type="time" id="manual-time" required>
+                </label>
+                <label>Title
+                    <input type="text" id="manual-title" placeholder="e.g. Lunch with collaborators" maxlength="200" required>
+                </label>
+                <div class="manual-form-buttons">
+                    <button type="submit" class="action-button primary">Save</button>
+                    <button type="button" id="manual-cancel" class="action-button">Cancel</button>
+                    <button type="button" id="manual-delete" class="action-button danger" hidden>Delete</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Help / instructions view -->
+        <div id="help-view" class="view">
+            <header class="view-header">
+                <h1>How to use myICM 2026</h1>
+            </header>
+            <div class="help-content">
+                <section>
+                    <h3>📋 Schedule</h3>
+                    <p>Browse all ICM 2026 events. Use the date tabs to see one day (or all days)
+                    and the category menu to narrow down to Plenary Lectures, Section Lectures,
+                    Short Communications, and more. Tap an event to read its abstract.
+                    Tap <strong>＋</strong> to add an event to your calendar (it becomes <strong>✓</strong>).</p>
+                </section>
+                <section>
+                    <h3>📅 Calendar</h3>
+                    <p>Days with a dot have events you picked. Today is outlined. Tap a day to
+                    see your events for that day in time order.</p>
+                </section>
+                <section>
+                    <h3>⭐ Day view &amp; highlights</h3>
+                    <p>Each event shows its time, room, speaker, and title. Tap the star to
+                    highlight the events you most don't want to miss. Tap an event to see its
+                    abstract again — this works even offline.</p>
+                </section>
+                <section>
+                    <h3>✏️ Your own events</h3>
+                    <p>In a day view, tap <strong>＋ Add my own event</strong> to put anything on
+                    your schedule — a lunch, a meeting, a walk to the Liberty Bell. Tap one of
+                    your events to edit or delete it.</p>
+                </section>
+                <section>
+                    <h3>📱 Install on iPhone</h3>
+                    <ol>
+                        <li>Open this site in <strong>Safari</strong>.</li>
+                        <li>Tap the <strong>Share</strong> button (square with an arrow).</li>
+                        <li>Choose <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</li>
+                    </ol>
+                    <p>The app opens full-screen from its own icon, like a native app.</p>
+                </section>
+                <section>
+                    <h3>🔒 Privacy</h3>
+                    <p><strong>All your data stays on this device.</strong> Your selections,
+                    highlights, and personal events are stored locally in your browser and are
+                    never sent anywhere. The app has no accounts, no analytics, and no tracking.</p>
+                </section>
+                <section>
+                    <h3>⚠️ Schedule accuracy</h3>
+                    <p id="help-snapshot-note"></p>
+                    <p>This app shows a snapshot of the ICM program. Talks can be moved or
+                    cancelled at any time — <strong>always verify important events against the
+                    current schedule at
+                    <a href="https://www.icm2026.org" target="_blank" rel="noreferrer">icm2026.org</a></strong>.</p>
+                </section>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <button id="nav-schedule" class="nav-button active">📋 Schedule</button>
+            <button id="nav-calendar" class="nav-button">📅 Calendar</button>
+            <button id="nav-help" class="nav-button">❓ Help</button>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
