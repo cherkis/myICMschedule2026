@@ -20,7 +20,7 @@ miss, and add your own events (lunches, meetings) alongside them.
   day view.
 - **Your own events** — add anything to a day with just a time and a title.
 - All times are **Philadelphia time**.
-- Works in any modern desktop browser and on iPhone.
+- Works in any modern desktop browser, on iPhone, and on Android.
 
 ## 🔒 Privacy: all data stays on your device
 
@@ -43,6 +43,15 @@ time — **always verify important events against the current official schedule 
 3. Choose **Add to Home Screen**, then tap **Add**.
 
 The app gets its own icon and opens full-screen like a native app. Your data
+stays on the phone.
+
+## Install on Android
+
+1. Open the app URL in **Chrome**.
+2. Tap the **⋮** menu (top right).
+3. Choose **Add to Home screen**, then tap **Add**.
+
+You'll get an icon on your home screen that opens the app in Chrome. Your data
 stays on the phone.
 
 ## Running / developing locally
